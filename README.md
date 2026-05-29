@@ -6,7 +6,7 @@ The React UI animation application build the following tech stack combination.
 - Vite for web building
 - TypeScript for static typing
 - Tailwind for UI styling 
-- Motion (Fomerly Framer Motion) for animation
+- Motion (Formerly know as Framer Motion) for animation
 
 ## Push to GitHub repository
 ```
