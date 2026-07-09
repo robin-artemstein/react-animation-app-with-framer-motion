@@ -2,14 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface GoodbyeModalProps {
-  onClose: () => void;
+  handleClose: () => void;
 }
 
-export const GoodbyeModal: React.FC<GoodbyeModalProps> = ({ onClose }) => {
+export const GoodbyeModal: React.FC<GoodbyeModalProps> = ({ handleClose }) => {
   return (
     <div 
       className="fixed inset-0 flex items-center justify-center p-4 z-50"
-      onClick={onClose}
+      onClick={handleClose}
     >
       {/* 
         This block rotates clockwise when coming into view (e.g., from -360 degrees to 0)
@@ -44,7 +44,7 @@ export const GoodbyeModal: React.FC<GoodbyeModalProps> = ({ onClose }) => {
         <div className="flex justify-center py-4">
           <button 
             className="bg-white text-violet-900 px-4 py-2 rounded font-semibold hover:bg-violet-100 transition-colors"
-            onClick={onClose}
+            onClick={handleClose}
           >
             Close
           </button>

@@ -2,14 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface SurpriseModalProps {
-  onClose: () => void;
+  handleClose: () => void;
 }
 
-export const SurpriseModal: React.FC<SurpriseModalProps> = ({ onClose }) => {
+export const SurpriseModal: React.FC<SurpriseModalProps> = ({ handleClose }) => {
   return (
     <div 
       className="fixed inset-0 flex items-center justify-center p-4 z-50"
-      onClick={onClose}
+      onClick={handleClose}
       /* We add perspective style here to make the 3D flipping rotations look realistic */
       style={{ perspective: 1200 }}
     >
@@ -44,7 +44,7 @@ export const SurpriseModal: React.FC<SurpriseModalProps> = ({ onClose }) => {
         <div className="flex justify-center py-4">
           <button 
             className="bg-white text-orange-900 px-4 py-2 rounded font-semibold hover:bg-orange-100 transition-colors"
-            onClick={onClose}
+            onClick={handleClose}
           >
             Close
           </button>

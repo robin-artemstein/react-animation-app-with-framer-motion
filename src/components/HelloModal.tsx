@@ -3,15 +3,15 @@ import { motion } from 'framer-motion';
 
 // Define the shape of properties this component expects to receive
 interface HelloModalProps {
-  onClose: () => void;
+  handleClose: () => void;
 }
 
-export const HelloModal: React.FC<HelloModalProps> = ({ onClose }) => {
+export const HelloModal: React.FC<HelloModalProps> = ({ handleClose }) => {
   return (
-    /* The backdrop overlay. Clicking here will trigger the onClose function */
+    /* The backdrop overlay. Clicking here will trigger the handleClose function */
     <div 
       className="fixed inset-0 flex items-center justify-center p-4 z-50"
-      onClick={onClose}
+      onClick={handleClose}
     >
       {/* 
         The content block with 'back in down' and 'back out down' custom spring configurations.
@@ -49,7 +49,7 @@ export const HelloModal: React.FC<HelloModalProps> = ({ onClose }) => {
         <div className="flex justify-center py-4">
           <button 
             className="bg-white text-blue-900 px-4 py-2 rounded font-semibold hover:bg-blue-100 transition-colors"
-            onClick={onClose}
+            onClick={handleClose}
           >
             Close
           </button>

@@ -13,7 +13,7 @@ export default function App() {
   // Requirement 9: Custom helper function using clean IF/ELSE statements for conditional rendering instead of ternary operators
   const renderHelloBlock = () => {
     if (showHello) {
-      return <HelloModal onClose={() => setShowHello(false)} />;
+      return <HelloModal handleClose={() => setShowHello(false)} />;
     } else {
       return null;
     }
@@ -21,7 +21,7 @@ export default function App() {
 
   const renderSurpriseBlock = () => {
     if (showSurprise) {
-      return <SurpriseModal onClose={() => setShowSurprise(false)} />;
+      return <SurpriseModal handleClose={() => setShowSurprise(false)} />;
     } else {
       return null;
     }
@@ -29,7 +29,7 @@ export default function App() {
 
   const renderGoodbyeBlock = () => {
     if (showGoodbye) {
-      return <GoodbyeModal onClose={() => setShowGoodbye(false)} />;
+      return <GoodbyeModal handleClose={() => setShowGoodbye(false)} />;
     } else {
       return null;
     }
