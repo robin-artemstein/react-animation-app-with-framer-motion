@@ -1,49 +1,55 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-interface Props {
-  isOpen: boolean;
+interface SurpriseModalProps {
   onClose: () => void;
 }
 
-export default function SurpriseModal({ isOpen, onClose }: Props) {
+export const SurpriseModal: React.FC<SurpriseModalProps> = ({ onClose }) => {
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 z-50"
-            onClick={onClose}
-          />
-
-          <motion.div
-            initial={{ rotateX: -90, opacity: 0 }}           // flip in X
-            animate={{ rotateX: 0, opacity: 1 }}
-            exit={{ rotateY: 90, opacity: 0 }}              // flip out Y
-            transition={{ duration: 0.6 }}
-            className="fixed inset-0 flex items-center justify-center z-50 p-4"
+    <div 
+      className="fixed inset-0 flex items-center justify-center p-4 z-50"
+      onClick={onClose}
+      /* We add perspective style here to make the 3D flipping rotations look realistic */
+      style={{ perspective: 1200 }}
+    >
+      {/*
+        Framer motion handles 3D animations nicely. 
+        rotateX flips it like a trapdoor (X-axis), while rotateY spins it like a coin (Y-axis).
+      */}
+      <motion.div
+        className="bg-orange-900 text-white p-6 rounded-lg max-w-lg w-full shadow-2xl relative shadow-xl shadow-orange-900"
+        onClick={(e) => e.stopPropagation()}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={{
+          hidden: { rotateX: -90, opacity: 0 },
+          visible: { 
+            rotateX: 0, 
+            opacity: 1, 
+            transition: { duration: 0.5, ease: "easeOut" } 
+          },
+          exit: { 
+            rotateY: 90, 
+            opacity: 0, 
+            transition: { duration: 0.5, ease: "easeIn" } 
+          }
+        }}
+      >
+        <p className="text-sm leading-relaxed mb-6">
+          Integer ornare in arcu non scelerisque. Praesent mollis, libero quis congue bibendum, massa mi convallis arcu, quis feugiat justo risus et leo. Donec eu quam vulputate, consectetur ligula a, luctus nibh. Curabitur sit amet augue et felis tincidunt commodo nec nec lectus. Phasellus volutpat libero at hendrerit convallis. In nibh massa, egestas sit amet magna in, facilisis eleifend metus. Nam maximus augue nibh, a dapibus ante sollicitudin sed. Nullam ante sem, placerat non est eget, vulputate ultricies tellus. Maecenas vitae tristique justo. Curabitur eu sapien viverra, volutpat nunc a, efficitur augue. Praesent scelerisque odio lorem. In hac habitasse platea dictumst.
+        </p>
+        
+        <div className="flex justify-center py-4">
+          <button 
+            className="bg-white text-orange-900 px-4 py-2 rounded font-semibold hover:bg-orange-100 transition-colors"
             onClick={onClose}
           >
-            <motion.div
-              onClick={(e) => e.stopPropagation()}
-              className="bg-orange-900 rounded-2xl max-w-2xl w-full p-8 shadow-2xl"
-            >
-              <h2 className="text-3xl font-bold mb-6">Surprise!!!</h2>
-              <p className="text-gray-200 leading-relaxed">
-                Integer ornare in arcu non scelerisque...
-              </p>
-              <button
-                onClick={onClose}
-                className="mt-8 px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition"
-              >
-                Close
-              </button>
-            </motion.div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+            Close
+          </button>
+        </div>
+      </motion.div>
+    </div>
   );
-}
+};
